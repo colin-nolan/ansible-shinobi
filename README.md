@@ -14,9 +14,9 @@ _Ansible role and modules for installing and configuring a
 ## Usage
 ### Role
 #### Installation
-Install
+Install from Ansible Galaxy:
 ```bash
-ansible-galaxy role install git+https://github.com/colin-nolan/python-shinobi-client.git,master
+ansible-galaxy install colin_nolan.shinobi
 ```
 
 #### Configuration
@@ -34,7 +34,7 @@ Important notes:
 
 - hosts: shinobi-servers
   roles:
-     - colin-nolan.shinboi
+     - colin_nolan.shinboi
   vars:
     shinobi_database_root_password: password123
     shinobi_database_user_name: user123
