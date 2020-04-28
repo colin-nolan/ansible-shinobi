@@ -15,6 +15,7 @@
   package:
     name:
       - tzdata
+      - git
 
 - name: install RPi apt prerequisites
   package:
@@ -43,9 +44,16 @@
   loop:
     - "{{ shinobi_data_directory }}"
     - "{{ shinobi_video_directory }}"
-    - "{{ shinobi_role_source_directory }}"
-    - "{{ shinobi_image_build_directory }}"
+    - "{{ shinobi_source_directory }}"
+    - "{{ shinobi_docker_directory }}"
     - "{{ shinobi_config_directory }}"
+
+- name: clone Shinobi Docker setup files
+  become: yes
+  git:
+    repo: "{{ shinobi_docker_source.repository }}"
+    version:  "{{ shinobi_docker_source.version }}"
+    dest: "{{ shinobi_docker_directory }}"
 
 # See file type information: https://docs.docker.com/compose/env-file/
 - name: create Docker compose configuration
@@ -55,18 +63,11 @@
     dest: "{{ shinobi_docker_compose_config_location }}"
     mode: 0600
 
-- name: copy Shinobi Docker files
-  become: yes
-  copy:
-    src: files/docker-shinobi/
-    dest: "{{ shinobi_image_build_directory }}"
-    follow: yes
-
 # https://docs.docker.com/compose/environment-variables/#the-env-file
 - name: symlink configuration into the same directory as docker-compose.yml
   file:
     src: "{{ shinobi_docker_compose_config_location }}"
-    dest: "{{ shinobi_image_build_directory }}/.env"
+    dest: "{{ shinobi_docker_directory }}/.env"
     state: link
 
 - name: setup containerised services
@@ -74,7 +75,7 @@
   docker_compose:
     build: yes
     project_name: shinobi
-    project_src: "{{ shinobi_image_build_directory }}"
+    project_src: "{{ shinobi_docker_directory }}"
 
 - name: wait for Shinobi to start
   wait_for:

@@ -15,6 +15,9 @@ shinobi_video_directory: "{{ shinobi_data_directory }}/videos"
 # TODO: warning about using unoptimised build
 shinobi_docker_shinobi_base_image: colinnolan/ffmpeg:latest
 
+shinobi_docker_source:
+  repository: https://github.com/colin-nolan/docker-shinobi.git
+  version: master
 shinobi_source:
   repository: https://gitlab.com/Shinobi-Systems/Shinobi.git
   version: master
@@ -22,7 +25,7 @@ shinobi_source:
 shinobi_host_address: 0.0.0.0
 shinobi_host_port: 8080
 
-shinobi_role_source_directory: /usr/local/src/shinobi
+shinobi_source_directory: /usr/local/src/shinobi
 shinobi_config_directory: /etc/shinobi
 
 shinobi_users: [{
