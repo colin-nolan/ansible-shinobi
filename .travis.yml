@@ -1,0 +1,14 @@
+---
+
+language: python
+python:
+  - 3.8
+
+services:
+  - docker
+
+before_install:
+  - pip install -r molecule/default/requirements.txt
+
+script:
+  - molecule test
