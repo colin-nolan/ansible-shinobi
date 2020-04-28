@@ -1,7 +1,7 @@
 ---
 
 galaxy_info:
-  role_name: colin-nolan-shoinobi
+  role_name: shinobi
   author: Colin Nolan
   description: >
     Ansible role and modules for installing and configuring a Dockerised installation of Shinobi (an open-source video

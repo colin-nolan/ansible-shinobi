@@ -14,7 +14,7 @@ _Ansible role and modules for installing and configuring a
 ## Usage
 ### Role
 #### Installation
-TODO: make this work!
+Install
 ```bash
 ansible-galaxy role install git+https://github.com/colin-nolan/python-shinobi-client.git,master
 ```
