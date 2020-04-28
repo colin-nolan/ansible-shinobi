@@ -102,6 +102,7 @@
     token: "{{ shinobi_super_user_token }}"
   loop: "{{ shinobi_users }}"
 
+# FIXME
 - name: set Shinobi monitors
   shinobi_monitor:
     host: "{{ shinobi_host_address }}"

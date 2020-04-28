@@ -41,6 +41,3 @@ verifier:
     flake8
   env:
     TESTVARS_EXTRA_VARS: testvars.yml
-  # TODO
-#  options:
-#    p: cacheprovider

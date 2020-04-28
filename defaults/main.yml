@@ -12,12 +12,14 @@ shinobi_docker_database_base_image: "{{ 'jsurf/rpi-mariadb:stretch' if ansible_a
 shinobi_data_directory: /usr/lib/shinobi
 shinobi_video_directory: "{{ shinobi_data_directory }}/videos"
 
-# TODO: warning about using unoptimised build
+# You will probably want to use a Docker image with ffmpeg that is optimised for your host machine - the one here
+# this role is not!
 shinobi_docker_shinobi_base_image: colinnolan/ffmpeg:latest
 
 shinobi_docker_source:
   repository: https://github.com/colin-nolan/docker-shinobi.git
   version: master
+# Warning: the default is to use the non-community edition of Shinobi - this is not free to use in all cases
 shinobi_source:
   repository: https://gitlab.com/Shinobi-Systems/Shinobi.git
   version: master
@@ -28,6 +30,7 @@ shinobi_host_port: 8080
 shinobi_source_directory: /usr/local/src/shinobi
 shinobi_config_directory: /etc/shinobi
 
+# FIXME
 shinobi_users: [{
   "email": "colin@localhost",
   "password": "colin@localhost"
