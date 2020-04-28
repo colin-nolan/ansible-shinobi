@@ -1,11 +1,8 @@
 [![Build Status](https://travis-ci.org/colin-nolan/ansible-shinobi.svg?branch=master)](https://travis-ci.org/colin-nolan/ansible-shinobi)
 # Ansible Shinobi
-_Ansible role for installing and Ansible modules for controlling [Shinobi](https://gitlab.com/Shinobi-Systems/Shinobi)
-(an open-source video management solution)._
-
-## About
-This repository contains an [Ansible](https://github.com/ansible/ansible) role that installs and configures a [Shinobi
-installation, which runs inside Docker](https://github.com/colin-nolan/docker-shinobi/).
+_Ansible role and modules for installing and configuring a 
+[Dockerised installation](https://github.com/colin-nolan/docker-shinobi) of 
+[Shinobi](https://gitlab.com/Shinobi-Systems/Shinobi) (an open-source video management solution)._
 
 
 ## Requirements
@@ -93,7 +90,7 @@ module test [--destory=never]
 
 
 ## Legal
-[GPL v3.0](LICENSE.txt). Copyright 2020 Colin Nolan.
+[GPL v3.0](LICENSE.txt). Copyright 2019, 2020 Colin Nolan.
 
 I am not affiliated to the development of Shinobi project in any way. This work is in no way related to the company that
 I work for.
