@@ -33,9 +33,10 @@ def test_shinobi_user(testvars: Dict, does_user_exist: Callable[[str], bool], sh
 
 def test_shinobi_monitors(testvars: Dict, shinobi_client: ShinobiClient):
     user_password_map = {user["email"]: user["password"] for user in testvars["shinobi_users"]}
-    for monitor_id, monitor in testvars["shinobi_monitors"].items():
+    for monitor in testvars["shinobi_monitors"]:
         for user_email in monitor["users"]:
             monitor_orm = shinobi_client.monitor(user_email, user_password_map[user_email])
-            retrieved_monitor = monitor_orm.get(monitor_id)
-            assert retrieved_monitor is not None
-            assert retrieved_monitor["path"] == monitor["configuration"]["path"]
+            retrieved_monitor = monitor_orm.get(monitor["id"])
+            test_identifier = (user_email, monitor["id"])
+            assert retrieved_monitor is not None, test_identifier
+            assert retrieved_monitor["path"] == monitor["configuration"]["path"], test_identifier
