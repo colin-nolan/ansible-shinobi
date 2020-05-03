@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/colin-nolan/ansible-shinobi.svg?branch=master)](https://travis-ci.org/colin-nolan/ansible-shinobi)
+[![Build Status](https://travis-ci.com/colin-nolan/ansible-shinobi.svg?branch=master)](https://travis-ci.com/colin-nolan/ansible-shinobi)
 # Ansible Shinobi
 _Ansible role and modules for installing and configuring a 
 [Dockerised installation](https://github.com/colin-nolan/docker-shinobi) of 
@@ -7,15 +7,15 @@ _Ansible role and modules for installing and configuring a
 
 ## Requirements
 - Debian/Ubuntu (un-tested for other distributions).
-- x86 or armv7 architectures (i.e. works on Raspberry Pi!).
+- x86 or armv7 architectures (i.e. works on Raspberry Pi (2+)!).
 - Docker on the host machine.
-- `shinobi-client` Python package.
+- [`shinobi-client` Python package](](https://github.com/colin-nolan/python-shinobi)).
 
 
 ## Usage
 ### Role
 #### Installation
-Install from Ansible Galaxy:
+[Install from Ansible Galaxy](https://galaxy.ansible.com/colin_nolan/shinobi):
 ```bash
 ansible-galaxy install colin_nolan.shinobi
 ```
@@ -120,5 +120,6 @@ module test [--destory=never]
 ## Legal
 [GPL v3.0](LICENSE.txt). Copyright 2019, 2020 Colin Nolan.
 
-I am not affiliated to the development of Shinobi project in any way. This work is in no way related to the company that
-I work for.
+I am not affiliated to the development of Shinobi project in any way.
+
+This work is in no way related to the company that I work for.
