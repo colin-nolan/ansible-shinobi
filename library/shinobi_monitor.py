@@ -1,34 +1,5 @@
 #!/usr/bin/python3
 
-# TODO: Docs
-DOCUMENTATION = '''
----
-module: 
-
-short_description: 
-
-description:
-  - 
-    
-  - Note:
-
-options:
-    enabled:
-        description:
-            - Whether HDMI should be enabled
-        required: true
-
-author:
-    - Colin Nolan (@colin-nolan)
-'''
-
-EXAMPLES = '''
-- name: set HDMI
-  rpi_hdmi:
-    enabled: "{{ hdmi_enabled }}"
-  when: host_is_rpi 
-'''
-
 from typing import Dict, Tuple, Optional
 import traceback
 from ansible.module_utils.basic import AnsibleModule, missing_required_lib
