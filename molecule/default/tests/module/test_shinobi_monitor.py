@@ -55,14 +55,14 @@ def test_create_monitor(shinobi_monitor_ansible_task_runner, existing_user, shin
     shinobi_monitor_orm = shinobi_client.monitor(email, password)
     monitor = shinobi_monitor_orm.get(monitor_id)
     assert monitor is not None
-    assert ShinobiMonitorOrm.is_configuration_equivalent(configuration, monitor)
+    assert not ShinobiMonitorOrm.would_configuration_change(configuration, monitor)
 
     # Testing idempotence
     result = shinobi_monitor_ansible_task_runner(**parameter_arguments)
     assert not result["changed"]
     monitor = shinobi_monitor_orm.get(monitor_id)
     assert monitor is not None
-    assert ShinobiMonitorOrm.is_configuration_equivalent(configuration, monitor)
+    assert not ShinobiMonitorOrm.would_configuration_change(configuration, monitor)
 
 
 def test_list_non_existent_monitor(shinobi_monitor_ansible_task_runner, existing_user):

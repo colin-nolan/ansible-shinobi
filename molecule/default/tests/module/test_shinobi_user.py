@@ -4,7 +4,7 @@ import pytest
 from shinobi_client import ShinobiClient
 from testinfra.host import Host
 
-from .._common import run_ansible, create_example_email_and_password, SHINOBI_HOST, create_parameter_arguments
+from .._common import run_ansible, create_example_email_and_password, create_parameter_arguments
 
 import takeltest
 
@@ -27,20 +27,6 @@ def shinobi_user_ansible_task_runner(host: Host, testvars: Dict) -> Callable[...
             assert output["user"].get("user") is None, \
                 f"User data nested in output, when arguments: {parameter_arguments}"
         return output
-
-    return wrapped
-
-
-@pytest.fixture
-def does_user_exist(shinobi_client: ShinobiClient) -> Callable[[str], bool]:
-    """
-    TODO
-    :param shinobi_client:
-    :return:
-    """
-    def wrapped(email: str):
-        # return _does_user_exist(shinobi_client, email)
-        return shinobi_client.user.get(email) is not None
 
     return wrapped
 
