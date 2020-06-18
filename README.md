@@ -53,7 +53,7 @@ Important notes:
 
     shinobi_source:
       repository: https://gitlab.com/Shinobi-Systems/Shinobi.git
-      version: master
+      branch: master
 
     shinobi_docker_shinobi_base_image: colinnolan/ffmpeg:latest
 
