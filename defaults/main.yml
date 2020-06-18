@@ -18,11 +18,12 @@ shinobi_docker_shinobi_base_image: colinnolan/ffmpeg:latest
 
 shinobi_docker_source:
   repository: https://github.com/colin-nolan/docker-shinobi.git
-  version: 1.0.0
+  version: 1.1.0
 # Warning: the default is to use the non-community edition of Shinobi - this is not free to use in all cases
 shinobi_source:
   repository: https://gitlab.com/Shinobi-Systems/Shinobi.git
-  version: 010abad7da5e594da0e3fb697c86a753011aa53b
+  branch: master
+  commit: 3f536cc1c6c616029f4a8a83c48356cb934979e9
 
 shinobi_host_address: 0.0.0.0
 shinobi_host_port: 8080
