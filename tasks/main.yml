@@ -24,7 +24,7 @@
       - libffi-dev
       - libssl-dev
       - python3-dev
-  when: ansible_architecture.startswith("armv")
+  when: shinobi_docker_is_rpi
 
 - name: install Python prerequisites
   become: yes

@@ -49,7 +49,7 @@ def run_module():
 
     if state is None:
         if password is not None:
-            module.fail_json(msg=f"\"{PASSWORD_PARAMETER}\" must not be supplied if {STATE_PARAMETER} is not set")
+            module.fail_json(msg=f"\"{PASSWORD_PARAMETER}\" must not be supplied if \"{STATE_PARAMETER}\" is not set")
 
         if email is not None:
             info = dict(user=shinobi_client.user.get(email))
@@ -57,7 +57,8 @@ def run_module():
             info = dict(users=shinobi_client.user.get_all())
     else:
         if password is None and state == PRESENT_STATE:
-            module.fail_json(msg=f"\"password\" must be supplied if {STATE_PARAMETER} is {PRESENT_STATE}")
+            module.fail_json(
+                msg=f"\"{PASSWORD_PARAMETER}\" must be supplied if \"{STATE_PARAMETER}\" is {PRESENT_STATE}")
         changed, info = modify_user(email, state, shinobi_client, password=password)
 
     if info is None:
