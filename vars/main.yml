@@ -2,3 +2,5 @@
 
 shinobi_docker_directory: "{{ shinobi_source_directory }}/docker-shinobi"
 shinobi_docker_compose_config_location: "{{ shinobi_config_directory }}/docker-compose.env"
+
+shinobi_docker_is_rpi: "{{ ansible_architecture.startswith('armv') or ansible_architecture.startswith('aarch64')}}"
