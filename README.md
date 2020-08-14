@@ -7,7 +7,7 @@ _Ansible role and modules for installing and configuring a
 
 ## Requirements
 - Debian/Ubuntu (un-tested for other distributions).
-- x86, armv7 and aarch64 architectures (i.e. works on Raspberry Pi 2+).
+- x86, armv7 or aarch64 architectures (i.e. works on Raspberry Pi 2+).
 - Docker on the host machine.
 - [`shinobi-client` Python package](](https://github.com/colin-nolan/python-shinobi)).
 
