@@ -34,6 +34,7 @@
   loop:
     - docker
     - docker-compose
+    - shinobi-client
 
 - name: create directories
   become: yes
