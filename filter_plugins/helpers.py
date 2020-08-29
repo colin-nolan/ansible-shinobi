@@ -12,7 +12,7 @@ class FilterModule(object):
         processed = []
         for monitor in monitors:
             if "users" not in monitors:
-                raise ValueError(f"Monitor does not have 'users' list: {monitor}")
+                raise ValueError(f"Monitor (camera setup) does not have 'users' list: {monitor}")
             for user_email in monitor["users"]:
                 entry = dict(email=user_email, password=user_password_map[user_email],
                              configuration=monitor["configuration"], id=monitor["id"])
