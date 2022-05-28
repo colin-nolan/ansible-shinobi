@@ -4,18 +4,20 @@
   assert:
     that: item | mandatory
   loop:
-    - shinobi_database_root_password
-    - shinobi_database_user_name
-    - shinobi_database_user_password
-    - shinobi_super_user_email
-    - shinobi_super_user_password
-    - shinobi_super_user_token
+    - "{{ shinobi_database_root_password }}"
+    - "{{ shinobi_database_user_name }}"
+    - "{{ shinobi_database_user_password }}"
+    - "{{ shinobi_super_user_email }}"
+    - "{{ shinobi_super_user_password }}"
+    - "{{ shinobi_super_user_token }}"
+  no_log: true
 
 - name: install apt prerequisites
   package:
     name:
       - tzdata
       - git
+    cache_valid_time: "{{ shinobi_apt_cache_valid_time }}"
 
 - name: install RPi apt prerequisites
   package:

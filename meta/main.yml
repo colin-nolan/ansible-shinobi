@@ -1,8 +1,9 @@
 ---
 
 galaxy_info:
-  role_name: shinobi
   author: Colin Nolan
+  namespace: colin_nolan
+  role_name: shinobi
   description: >
     Dockerised installation of Shinobi (an open-source video management solution) and required database.
 

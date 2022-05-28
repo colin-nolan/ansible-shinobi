@@ -1,7 +1,5 @@
 molecule[docker]
-# `docker>4.2` does not currently (08/20) work in CI due to a client-server version mis-match.
-# See: https://travis-ci.com/github/colin-nolan/ansible-shinobi/builds/179672049
-docker<=4.2
+docker
 yamllint
 ansible-lint
 flake8

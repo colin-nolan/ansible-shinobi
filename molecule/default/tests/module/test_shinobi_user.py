@@ -20,12 +20,14 @@ def shinobi_user_ansible_task_runner(host: Host, testvars: Dict) -> Callable[...
     :param kwargs:
     :return:
     """
+
     def wrapped(**kwargs) -> Dict:
         parameter_arguments = create_parameter_arguments(testvars, token=testvars["shinobi_super_user_token"], **kwargs)
         output = run_ansible(host, "shinobi_user", parameter_arguments)
         if output.get("user"):
-            assert output["user"].get("user") is None, \
-                f"User data nested in output, when arguments: {parameter_arguments}"
+            assert (
+                output["user"].get("user") is None
+            ), f"User data nested in output, when arguments: {parameter_arguments}"
         return output
 
     return wrapped

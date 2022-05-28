@@ -19,6 +19,7 @@ def shinobi_monitor_ansible_task_runner(host: Host, testvars: Dict) -> Callable[
     :param testvars:
     :return:
     """
+
     def wrapper(**kwargs) -> Dict:
         parameter_arguments = create_parameter_arguments(testvars, **kwargs)
         return run_ansible(host, "shinobi_monitor", parameter_arguments)
@@ -33,6 +34,7 @@ def does_monitor_exist(shinobi_client: ShinobiClient) -> Callable[[Dict, str], b
     :param shinobi_client:
     :return:
     """
+
     def wrapped(user: Dict, monitor_id: str):
         return shinobi_client.monitor(user["email"], user["password"]).get(monitor_id) is not None
 
@@ -46,7 +48,8 @@ def test_create_monitor(shinobi_monitor_ansible_task_runner, existing_user, shin
     configuration = generate_monitor_configuration()
 
     parameter_arguments = dict(
-        email=email, password=password, state="present", id=monitor_id, configuration=configuration)
+        email=email, password=password, state="present", id=monitor_id, configuration=configuration
+    )
 
     result = shinobi_monitor_ansible_task_runner(**parameter_arguments)
     assert result["changed"]
@@ -90,11 +93,13 @@ def test_list_monitors(shinobi_monitor_ansible_task_runner, monitor_orm: Shinobi
 
 
 def test_modify_non_existent_monitor(
-        shinobi_monitor_ansible_task_runner, monitor_orm: ShinobiMonitorOrm, does_monitor_exist):
+    shinobi_monitor_ansible_task_runner, monitor_orm: ShinobiMonitorOrm, does_monitor_exist
+):
     user = monitor_orm.user
     monitor_id = generate_random_string()
     result = shinobi_monitor_ansible_task_runner(
-        monitor_id=monitor_id, configuration=generate_monitor_configuration(), user=user, state="present")
+        monitor_id=monitor_id, configuration=generate_monitor_configuration(), user=user, state="present"
+    )
     assert result["changed"]
     assert does_monitor_exist(user, monitor_id)
 
@@ -102,20 +107,25 @@ def test_modify_non_existent_monitor(
 def test_modify_monitor_with_same_values(shinobi_monitor_ansible_task_runner, existing_user, does_monitor_exist):
     monitor_id = generate_random_string()
     shinobi_monitor_ansible_task_runner(
-        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(1), state="present")
+        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(1), state="present"
+    )
     result = shinobi_monitor_ansible_task_runner(
-        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(1), state="present")
+        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(1), state="present"
+    )
     assert not result["changed"]
     assert does_monitor_exist(existing_user, monitor_id)
 
 
 def test_modify_monitor_with_different_configuration(
-        shinobi_monitor_ansible_task_runner, existing_user, does_monitor_exist):
+    shinobi_monitor_ansible_task_runner, existing_user, does_monitor_exist
+):
     monitor_id = generate_random_string()
     result_1 = shinobi_monitor_ansible_task_runner(
-        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(1), state="present")
+        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(1), state="present"
+    )
     result_2 = shinobi_monitor_ansible_task_runner(
-        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(2), state="present")
+        id=monitor_id, user=existing_user, configuration=generate_monitor_configuration(2), state="present"
+    )
     assert result_1["monitor"]["details"] != result_2["monitor"]["details"]
     assert does_monitor_exist(existing_user, monitor_id)
 
@@ -131,4 +141,3 @@ def test_delete_monitor(shinobi_monitor_ansible_task_runner, existing_monitor, d
     result = shinobi_monitor_ansible_task_runner(user=user, id=existing_monitor["id"], state="absent")
     assert result["changed"]
     assert not does_monitor_exist(user, monitor_id)
-
