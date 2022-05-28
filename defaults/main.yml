@@ -8,6 +8,8 @@
 
 ---
 
+shinobi_apt_cache_valid_time: 3600
+
 shinobi_docker_database_base_image: "{{ 'jsurf/rpi-mariadb:stretch' if shinobi_docker_is_rpi else 'mariadb' }}"
 shinobi_data_directory: /usr/lib/shinobi
 shinobi_video_directory: "{{ shinobi_data_directory }}/videos"
