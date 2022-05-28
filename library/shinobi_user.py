@@ -30,7 +30,7 @@ def run_module():
             SUPER_USER_TOKEN_PARAMETER: dict(type="str", required=True),
             STATE_PARAMETER: dict(type="str", default=None),
             EMAIL_PARAMETER: dict(type="str"),
-            PASSWORD_PARAMETER: dict(type="str", default=None, no_log=True)
+            PASSWORD_PARAMETER: dict(type="str", default=None, no_log=True),
         }
     )
     host = module.params[HOST_PARAMETER]
@@ -49,7 +49,7 @@ def run_module():
 
     if state is None:
         if password is not None:
-            module.fail_json(msg=f"\"{PASSWORD_PARAMETER}\" must not be supplied if \"{STATE_PARAMETER}\" is not set")
+            module.fail_json(msg=f'"{PASSWORD_PARAMETER}" must not be supplied if "{STATE_PARAMETER}" is not set')
 
         if email is not None:
             info = dict(user=shinobi_client.user.get(email))
@@ -57,8 +57,7 @@ def run_module():
             info = dict(users=shinobi_client.user.get_all())
     else:
         if password is None and state == PRESENT_STATE:
-            module.fail_json(
-                msg=f"\"{PASSWORD_PARAMETER}\" must be supplied if \"{STATE_PARAMETER}\" is {PRESENT_STATE}")
+            module.fail_json(msg=f'"{PASSWORD_PARAMETER}" must be supplied if "{STATE_PARAMETER}" is {PRESENT_STATE}')
         changed, info = modify_user(email, state, shinobi_client, password=password)
 
     if info is None:
@@ -68,8 +67,9 @@ def run_module():
 
 
 # Note: don't use `ShinobiClient` type as the library may not have loaded, which is handled in the `run_module` method
-def modify_user(email: str, state: str, shinobi_client: "ShinobiClient", *, password: str) \
-        -> Tuple[bool, Optional[Dict]]:
+def modify_user(
+    email: str, state: str, shinobi_client: "ShinobiClient", *, password: str
+) -> Tuple[bool, Optional[Dict]]:
     user = shinobi_client.user.get(email)
 
     if user:

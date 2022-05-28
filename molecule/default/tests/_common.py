@@ -18,8 +18,9 @@ class AnsibleRunError(RuntimeError):
     """
 
 
-def run_ansible(host: Host, playbook: str, parameter_values: Dict, run_configuration: Dict = MappingProxyType({})) \
-        -> Dict:
+def run_ansible(
+    host: Host, playbook: str, parameter_values: Dict, run_configuration: Dict = MappingProxyType({})
+) -> Dict:
     """
     TODO
     :param host:
@@ -41,7 +42,7 @@ def run_ansible(host: Host, playbook: str, parameter_values: Dict, run_configura
         if isinstance(value, dict) or isinstance(value, list):
             placeholder_name = generate_random_string()
             extra_vars[placeholder_name] = value
-            parameter_values[key] = "{{ %s }}" % (placeholder_name, )
+            parameter_values[key] = "{{ %s }}" % (placeholder_name,)
 
     # For some reason module args are passed though as a string. JSON dump did not work
     parameter_arguments = " ".join(f"{key}={value}" for key, value in parameter_values.items())
@@ -80,10 +81,7 @@ def create_parameter_arguments(testvars: Dict, **kwargs) -> Dict:
     :param kwargs:
     :return:
     """
-    parameter_arguments = {
-        "host": SHINOBI_HOST,
-        "port": testvars["shinobi_host_port"]
-    }
+    parameter_arguments = {"host": SHINOBI_HOST, "port": testvars["shinobi_host_port"]}
     for key, value in kwargs.items():
         if value is not None:
             parameter_arguments[key] = value

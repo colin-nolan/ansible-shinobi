@@ -6,7 +6,7 @@ RESOURCE_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 
 EXAMPLE_MONITOR_LOCATIONS = {
     1: os.path.join(RESOURCE_DIRECTORY, "example-monitor-1.json"),
-    2: os.path.join(RESOURCE_DIRECTORY, "example-monitor-2.json")
+    2: os.path.join(RESOURCE_DIRECTORY, "example-monitor-2.json"),
 }
 
 
@@ -17,4 +17,3 @@ def generate_monitor_configuration(example_monitor_id: int = 1) -> Dict:
     :return:
     """
     return json.load(open(EXAMPLE_MONITOR_LOCATIONS[example_monitor_id], "r"))
-

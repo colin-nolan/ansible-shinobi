@@ -58,6 +58,7 @@ def does_user_exist(shinobi_client: ShinobiClient) -> Callable[[str], bool]:
     :param shinobi_client:
     :return:
     """
+
     def wrapped(email: str):
         # return _does_user_exist(shinobi_client, email)
         return shinobi_client.user.get(email) is not None
