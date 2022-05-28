@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/colin-nolan/ansible-shinobi.svg?branch=master)](https://travis-ci.com/colin-nolan/ansible-shinobi)
+![Build Status](https://github.com/colin-nolan/ansible-shinobi/actions/workflows/main.yml/badge.svg)
+
 # Ansible Shinobi
 _Ansible role and modules for installing and configuring a 
 [Dockerised installation](https://github.com/colin-nolan/docker-shinobi) of 
