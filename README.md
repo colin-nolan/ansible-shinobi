@@ -1,3 +1,6 @@
+# No longer maintained as I have moved to using [Home Assistant](https://www.home-assistant.io/).
+
+
 ![Build Status](https://github.com/colin-nolan/ansible-shinobi/actions/workflows/main.yml/badge.svg)
 
 # Ansible Shinobi
